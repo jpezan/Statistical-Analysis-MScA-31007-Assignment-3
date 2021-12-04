@@ -1,0 +1,26 @@
+---
+title: "Homework 3"
+output: html_notebook
+author: Jacqueline Pezan 
+date: 10/15/2021
+---
+```{r}
+dataPath<-"~/UChicago/31007_Stats_Lec/Assignment3"
+dat <- read.table(paste(dataPath,'Week3_Test_Sample.csv',sep = '/'), header=TRUE)
+
+mean <- dat$x[1]
+sd <- dat$x[2]
+int <- dat$x[3]
+sample.data <- dat$x[4:503]
+
+datNorm <- qnorm(sample.data, mean=mean, sd=sd)
+#hist(datNorm)
+
+datExp <- qexp(sample.data, rate=int, lower.tail = TRUE, log.p = FALSE)
+#hist(datExp)
+
+res<-cbind(datNorm=datNorm,datExp=datExp)
+write.table(res, file = paste(dataPath,'result.csv',sep = '/'), row.names = F)
+```
+
+
